@@ -1,0 +1,23 @@
+<fab-panel [isOpen]="isOpen" [isBlocking]="true" headerText="Absence Details" [type]="panelType"
+  (Dismiss)="_handleOnDismiss($event)">
+  <div class="ms-Grid-row form-row">
+    <div class="ms-Grid-col ms-sm-12">
+      <span class="title">Type of absence :</span> <span class="detail" [textContent]="absence.Type"></span>
+    </div>
+    <div class="ms-Grid-col ms-sm-12">
+      <span class="title">Absence for :</span> <span class="detail" [textContent]="absence.DisplayName"></span>
+    </div>
+    <div class="ms-Grid-col ms-sm-12">
+      <span class="title">From the :</span> <span class="detail" [textContent]="absence.Department"></span> Department
+    </div>
+    <div class="ms-Grid-col ms-sm-12">
+      <span class="title">Starting from :</span> <span class="detail" [textContent]="absence.StartDate"></span>
+    </div>
+    <div class="ms-Grid-col ms-sm-12">
+      <span class="title">Ending at:</span> <span class="detail" [textContent]="absence.EndDate"></span>
+    </div>
+    <div class="ms-Grid-col ms-sm-12">
+      <span class="title">Total duration:</span> <span class="detail" [textContent]="absence.NumberOfDays"></span>
+    </div>
+  </div>
+</fab-panel>

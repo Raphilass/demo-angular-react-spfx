@@ -1,0 +1,73 @@
+<app-info-panel [ShowPanel]="_showPanel" [PanelType]="_panelType" [Absence]="_passAbsence"
+  (dismiss)="_handleOnPanelDismiss()"></app-info-panel>
+<app-add-holiday-panel [ShowPanel]="_showAddPanel" [PanelType]="_panelType" [ListID]="listId"
+  (dismiss)="_handleOnAddPanelDismiss()"></app-add-holiday-panel>
+<fab-fabric>
+  <ng-container *ngIf="_loading; then loading ; else panel">
+  </ng-container>
+  <ng-template #panel>
+    <div class="ms-Grid" dir="ltr">
+      <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-sm-3 tile-container">
+          <h1>Absences</h1> 
+          <div class="current">
+            <h2>Today</h2>
+            <ng-container *ngIf="holidays.TodaysHolidays.length > 0 ;then showCurrent ; else noCurrent"></ng-container>
+            <ng-template #showCurrent>
+              <div class="flex-container">
+                <div class="flex-tile" *ngFor="let holiday of holidays.TodaysHolidays">
+                  <div class="tile-header">
+                    <span [textContent]="holiday.StartDate"></span> to <span [textContent]="holiday.EndDate"></span>
+                  </div>
+                  <div class="tile-body">
+                    <span [textContent]="holiday.DisplayName"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="tile-add-icon">
+                <fab-icon-button [iconProps]="addIconProps" [styles]="addIconStyles" ariaLabel="Add a holiday" (click)="_addAbsence()">
+                </fab-icon-button>
+              </div>
+
+            </ng-template>
+            <ng-template #noCurrent>
+              There are no holidays booked today
+            </ng-template>
+          </div>
+          <div class="upcoming">
+            <h2>Upcoming Absences</h2>
+            <ng-container *ngIf="holidays.UpcomingHolidays.length > 0 ;then showUpcoming ; else noUpcoming">
+            </ng-container>
+            <ng-template #showUpcoming>
+              <div class="flex-container">
+                <div class="flex-tile" *ngFor="let holiday of holidays.UpcomingHolidays">
+                  <div class="tile-header">
+                    <span [textContent]="holiday.StartDate"></span>
+                  </div>
+                  <div class="tile-body">
+                    <span [textContent]="truncateDetail(holiday,35)"></span>
+                    <span class="tile-open">
+                      <fab-icon-button (click)="_handleShowPane(holiday)" [iconProps]="{iconName:'OpenPane'}"
+                        [styles]="addIconStyles" ariaLabel="View Holiday"></fab-icon-button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template #noUpcoming>
+              There are no holidays booked in the near future.
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #loading>
+    <div class="ms-Grid" dir="ltr">
+      <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-sm-3 tile-container">
+          <img src="../../assets/loading.gif" alt="loading application"></div>
+      </div>
+    </div>
+  </ng-template>
+</fab-fabric>

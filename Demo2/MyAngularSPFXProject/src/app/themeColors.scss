@@ -1,0 +1,15 @@
+@mixin bgColor-themeDark {
+    background-color: #821d86;
+}
+
+@mixin bgColor-themePrimary {
+    background-color: #600063;
+}
+
+@mixin bgColor-themeSecondary{
+    background-color: #a54aa8;
+}
+
+@mixin fontColor-themePrimary {
+    color: #600063;
+}

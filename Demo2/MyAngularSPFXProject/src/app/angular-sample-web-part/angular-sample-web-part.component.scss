@@ -1,0 +1,92 @@
+@import "~office-ui-fabric-core/dist/sass/fabric";
+@import "../themeColors.scss";
+
+
+.tile-container{
+    padding:20px;
+    box-shadow: 0px 0px 15px  #a6a6a6;
+    @include ms-font-l;
+    @include ms-bgColor-neutralSecondary;
+    @include ms-fontColor-white;
+    
+
+    h1{
+        @include ms-fontColor-white; 
+    }
+    h2{
+        @include ms-fontColor-neutralLight;
+        margin-block-start: 0;
+    }
+    h3{
+        @include ms-fontColor-white; 
+    }
+    .current{
+        margin:5%;
+        padding:40px 10px;
+        @include ms-font-m-plus;
+        @include bgColor-themePrimary;          
+        box-shadow: 5px 5px 15px #666;
+        .tile-add-icon{
+            @include ms-font-xxl;
+            @include ms-fontColor-white; 
+            float:right;
+        }
+
+        .flex-container{
+            .flex-tile{
+                width: 90%;
+                padding: 10px 5px;
+            }
+            .flex-tile:hover{
+                @include bgColor-themeSecondary;
+            }
+        }
+
+    }
+
+    .flex-container {
+        display:flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+        align-items: stretch;
+        .flex-tile {
+            width: 100%;
+            margin: 5px;
+            padding:5px;
+            span.tile-bullet{                
+                @include ms-font-xl;
+                margin-right: 5px;
+                margin-top: 0;
+                float: left;
+            }
+            .tile-header{
+                @include ms-font-l;
+            }  
+            .tile-body{
+                @include ms-font-m;
+                @include ms-fontColor-neutralLight; 
+                .tile-open{
+                    float:right;
+                    margin-top:-15px;
+                }
+            }
+          }
+
+          .flex-tile:hover{            
+            // @include ms-bgColor-themeLight;  
+            // @include ms-fontColor-neutralSecondary;  
+            span.tile-bullet{                
+                @include ms-fontColor-themePrimary; 
+            }
+            .tile-body{
+                // @include ms-fontColor-neutralSecondary; 
+            }
+          }
+
+    }
+    
+    
+}
+
