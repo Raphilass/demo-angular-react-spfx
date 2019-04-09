@@ -53,6 +53,7 @@ export class AngularSampleWebPartComponent implements OnInit, AfterViewInit {
   _handleOnAddPanelDismiss(){
     console.log("item added");
     this.holidayProvider.GetHolidays(this.listId).subscribe(response =>{
+      console.log("Holiday Added, getting new holidays")
       this.holidays = response;
     })
     this._showAddPanel = false;
