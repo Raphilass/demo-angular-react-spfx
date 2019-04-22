@@ -1,0 +1,20 @@
+
+@import "~office-ui-fabric-core/dist/sass/fabric";
+
+.form-row{
+    margin-bottom:20px;
+
+    .form-control-label{
+        @include ms-font-m-plus;
+        @include ms-fontWeight-semibold;
+    }
+
+    .form-control{
+        @include ms-font-m;
+        width:100%;
+        .description{
+            @include ms-font-s;
+        }
+        
+    }
+}

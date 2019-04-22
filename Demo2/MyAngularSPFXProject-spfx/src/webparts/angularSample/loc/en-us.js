@@ -1,8 +1,6 @@
 define([], function () {
   return {
-    "ListNameFieldLabel": "Please choose the events list.",
-    "NumberOfRecordsFieldLabel": "How many records do you want to see ?",
-    "ReturnWhoseRecordsFieldLabel": "Return records for ?",
+    "descriptionFieldLabel": "Please provide a description.",
     "BasicGroupName": "Basic Settings",
     "PropertyPaneDescription": "Settings"
   }

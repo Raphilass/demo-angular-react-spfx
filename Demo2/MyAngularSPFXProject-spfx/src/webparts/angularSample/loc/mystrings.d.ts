@@ -1,9 +1,7 @@
 declare interface IAngularSampleWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
-  ListNameFieldLabel: string;
-  NumberOfRecordsFieldLabel: string;
-  ReturnWhoseRecordsFieldLabel: string;
+  descriptionFieldLabel: string;
 }
 
 declare module 'AngularSampleWebPartStrings' {

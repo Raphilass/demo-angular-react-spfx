@@ -1,0 +1,97 @@
+<app-info-panel [ShowPanel]="_showPanel" [PanelType]="_panelType" [Absence]="_passAbsence"
+  (dismiss)="_handleOnPanelDismiss()"></app-info-panel>
+<app-add-holiday-panel [ShowPanel]="_showAddPanel" [PanelType]="_panelType" [ListID]="listId"
+  (dismiss)="_handleOnAddPanelDismiss()" [CurrentUser]="CurrentUser"></app-add-holiday-panel>
+<fab-fabric>
+  <div>
+    <ng-container *ngIf="asyncHols| async as holidays;  else showLoader;">
+      <div class="ms-Grid" dir="ltr">
+        <div class="ms-Grid-row">
+          <div class="ms-Grid-col ms-sm-3 tile-container">
+            <h1>Demo 3 - Absences</h1>
+            <div class="current">
+              <h2>Today</h2>
+              <ng-container *ngIf="holidays.TodaysHolidays.length > 0 ;then showCurrent ; else noCurrent">
+              </ng-container>
+              <ng-template #showCurrent>
+                <div class="flex-container">
+                  <div class="flex-tile" *ngFor="let holiday of holidays.TodaysHolidays | slice:0:3"
+                    (click)="_handleShowPane(holiday)">
+                    <div class="tile-header">
+                      <span [textContent]="holiday.StartDate"></span> to <span [textContent]="holiday.EndDate"></span>
+                    </div>
+                    <div class="tile-body">
+                      <span [textContent]="holiday.DisplayName"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile-add-icon">
+                  <fab-icon-button [iconProps]="addIconProps" [styles]="addIconStyles" ariaLabel="Add a holiday"
+                    (click)="_addAbsence()">
+                  </fab-icon-button>
+                </div>
+                <div class="tile-more-results">
+                  <fab-action-button *ngIf="holidays.TodaysHolidays.length > 3" text="more items.."
+                    (click)="showAllItems()" [styles]="moreIconStyles">
+                  </fab-action-button>
+                </div>
+              </ng-template>
+              <ng-template #noCurrent>
+                There are no holidays booked today
+              </ng-template>
+            </div>
+            <div class="upcoming">
+              <h2>Upcoming Absences</h2>
+              <ng-container *ngIf="holidays.UpcomingHolidays.length > 0 ;then showUpcoming ; else noUpcoming">
+              </ng-container>
+              <ng-template #showUpcoming>
+                <div class="flex-container">
+                  <div class="flex-tile" *ngFor="let holiday of holidays.UpcomingHolidays | slice:0:numberOfRecords">
+                    <div class="tile-header">
+                      <span [textContent]="holiday.StartDate"></span>
+                    </div>
+                    <div class="tile-body">
+                      <span [textContent]="truncateDetail(holiday,35)"></span>
+                      <span class="tile-open">
+                        <fab-icon-button (click)="_handleShowPane(holiday)" [iconProps]="{iconName:'OpenPane'}"
+                          [styles]="addIconStyles" ariaLabel="View Holiday"></fab-icon-button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile-more-results">
+                  <fab-action-button *ngIf="holidays.TodaysHolidays.length > numberOfRecords" text="more items.."
+                    (click)="showAllItems()" [styles]="moreIconStyles">
+                  </fab-action-button>
+                </div>
+              </ng-template>
+              <ng-template #noUpcoming>
+                There are no holidays booked in the near future.
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #showLoader>
+      <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-sm12">
+          <div class="lds-label">Loading...
+          </div>
+          <div>
+            <div class="lds-css ng-scope">
+              <div style="width:100%;height:100%" class="lds-eclipse">
+                <div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+</fab-fabric>

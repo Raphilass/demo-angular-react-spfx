@@ -16,13 +16,14 @@ export class AngularSampleWebPartComponent implements OnInit, AfterViewInit {
   @Input("list-name") listId: string;
   @Input("number-of-records") numberOfRecords: number;
   @Input("return-whose-records") whichRecords: number;
+  @Input("users-department") userDepartment:string;
+  @Input("current-user") CurrentUser:string
   @Input() siteurl: string;
 
   _showPanel:boolean = false;
   _showAddPanel:boolean = false;
   _passAbsence:IHoliday;
   _panelType:PanelType = PanelType.medium;
-
   _loading:boolean = false;
 
   addIconProps:IIconProps = {
@@ -31,19 +32,33 @@ export class AngularSampleWebPartComponent implements OnInit, AfterViewInit {
 
   addIconStyles:IButtonStyles = {
     root:{
-      color:'#ffffff',
+      color:'#333333',
       height: '32px',
       width: '32px'
     }   ,
     rootHovered:{
-      color:"#deecf9"
+      color:"#666666"
     },
     icon:{
       fontSize:'32px'
     }
   }
 
+  moreIconStyles:IButtonStyles = {
+    root:{
+      color:'#ffffff'
+    }   ,
+    rootHovered:{
+      color:"#deecf9"
+    },
+    icon:{
+      fontSize:'16px'
+    }
+  }
+
   holidays:IOrderedHolidays;
+
+  asyncHols:Observable<IOrderedHolidays>;
 
   _handleShowPane(holiday:IHoliday){
     this._showPanel = true;
@@ -51,11 +66,8 @@ export class AngularSampleWebPartComponent implements OnInit, AfterViewInit {
   }
 
   _handleOnAddPanelDismiss(){
-    console.log("item added");
-    this.holidayProvider.GetHolidays(this.listId).subscribe(response =>{
-      console.log("Holiday Added, getting new holidays")
-      this.holidays = response;
-    })
+    console.log("item added");    
+    this.asyncHols = this.holidayProvider.GetHolidays(this.listId);
     this._showAddPanel = false;
   }
 
@@ -74,8 +86,9 @@ export class AngularSampleWebPartComponent implements OnInit, AfterViewInit {
       // set the properties for testing
        this.siteurl = "http://localhost:8080"
       this.listId = "02E98350-7FDA-4750-A558-1CF5F4CC9A02";
-      this.numberOfRecords = 10;
+      this.numberOfRecords = 5;
       this.whichRecords = 2
+      this.CurrentUser = "admin@philcoulson.co.uk"
 
       // set locale
       moment.locale("en-GB")
@@ -86,16 +99,19 @@ export class AngularSampleWebPartComponent implements OnInit, AfterViewInit {
   lists:any[];
 
   ngOnInit() {
-    // subscribe to loading
-    this.holidayProvider.loading$.subscribe(response =>{
-      console.log(response);
-      this._loading = response;
-    })
-    // get the items on the list
-    this.holidayProvider.GetHolidays(this.listId).subscribe(response =>{
-      this.holidays = response;
-    })
-    console.log("loading 2 ", this._loading)
+   
+    // get the items on the list - subscribe method
+    // this.holidayProvider.GetHolidays(this.listId).subscribe(response =>{
+    //   this.holidays = response;
+    // })
+
+    // get holiday items - async method
+    // setTimeout(() => {
+      this.asyncHols = this.holidayProvider.GetHolidays(this.listId);
+    // }, 1500);
+    
+
+
   } 
   
   ngAfterViewInit(): void {

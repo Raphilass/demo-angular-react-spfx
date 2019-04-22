@@ -1,0 +1,19 @@
+@import "~office-ui-fabric-core/dist/sass/fabric";
+@import "../themeColors.scss";
+
+.form-row{
+    @include ms-font-l;
+    div{
+        margin-bottom:10px;
+        .title{
+            @include ms-fontWeight-semibold;
+            @include fontColor-themePrimary;
+            display:block;
+            width:150px;
+        }
+        .detail{
+            margin-left:15px;
+        }
+    }
+}
+

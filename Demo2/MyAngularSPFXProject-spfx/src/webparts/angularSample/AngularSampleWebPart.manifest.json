@@ -20,8 +20,7 @@
     "description": { "default": "A Sample SPFX Web Part written in Angular" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "NumberOfRecords" : 5,
-      "ReturnWhoseRecords" : "Department"
+      "description": "Hello World Web Part"
     }
   }]
 }

@@ -1,0 +1,13 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.7.1",
+    "libraryName": "my-angular-spfx-project-spfx",
+    "libraryId": "00133d5e-b235-4373-9e66-1a29c42dd1f7",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "MyAngularSPFXProject-spfx",
+    "framework": "none",
+    "isCreatingSolution": true,
+    "componentType": "webpart"
+  }
+}

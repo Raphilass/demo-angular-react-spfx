@@ -1,0 +1,76 @@
+<fab-panel [isOpen]="isOpen" [isBlocking]="true" headerText="Add Holiday" [type]="panelType"
+  (Dismiss)="_handleOnDismiss($event)" [isFooterAtBottom]="true"
+  #panel>
+  <form #form="ngForm">
+    <!-- Reason Text Field -->
+    <div class='ms-Grid-row form-row'>
+      <div class='ms-Grid-col ms-sm12'>
+        <div class='form-control'>
+          <!-- replace with single line text box -->
+          <fab-text-field label="Reason" [required]="true" [value]="reason"
+            (onChange)="_handleReasonChange($event)" #reasonTextField></fab-text-field>
+          <span class='description'>Provide a title, for the absence. ie. Holiday, Doctors Appointment, Childcare
+            Issues.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Absence Type Choice Field -->
+    <div class='ms-Grid-row form-row'>
+      <div class='ms-Grid-col ms-sm12'>
+        <div class='form-control'>
+          <!-- replace with choice field -->
+          <fab-dropdown
+          [options]="_absences"
+          [required]="true"
+          label="Select absence type"
+          (onChange)="_onSelectedAbsenceChanged($event)"
+          name="absence"
+        ></fab-dropdown>
+          <span class='description'>Categorise your absence.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Start Date Field -->
+    <div class='ms-Grid-row form-row'>
+      <div class='ms-Grid-col ms-sm12'>
+        <div class='form-control'>
+          <!-- add start date picker here -->
+          <fab-date-picker 
+          name="startdate" 
+          label="Start Date" 
+          (onSelectDate)="_handleSelectStartDate($event)"
+          [isRequired]="true" 
+          required
+          ></fab-date-picker>
+          <span class='description'>Please choose the date your absence will start on.</span>
+        </div>
+      </div>
+    </div>
+    <!-- End Date Field -->
+    <div class='ms-Grid-row form-row'>
+      <div class='ms-Grid-col ms-sm12'>
+        <div class='form-control'>
+          <!-- add start date picker here -->
+          <fab-date-picker 
+          name="enddate" 
+          label="End Date" 
+          (onSelectDate)="_handleSelectEndDate($event)"
+          [isRequired]="true" 
+          required></fab-date-picker>
+          <span class='description'>The end date is the last day of your absence, not the day you return to
+            work.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Button Controls -->
+    <div class='ms-Grid-row form-row'>
+      <div class='ms-Grid-col ms-sm12'>
+        <div class='form-control'>
+          <!-- Button Row, Submit and Cancel Button-->
+          <fab-primary-button text="Add" [disabled]="_disabled" (click)="_handleAddAbsence()"></fab-primary-button>
+          <fab-default-button text="Cancel" (click)="_handleCancelForm()"></fab-default-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</fab-panel>
