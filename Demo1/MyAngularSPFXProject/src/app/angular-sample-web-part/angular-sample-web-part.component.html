@@ -3,3 +3,9 @@
   App Loaded <br />
   Your description says {{description}}
 </div>
+
+<div>
+ <ul>
+  <li *ngFor='let list of lists'><span [textContent]='list.Title'></span></li>
+ </ul>
+</div>

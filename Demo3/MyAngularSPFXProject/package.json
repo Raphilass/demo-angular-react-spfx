@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start-proxy": "node ./server.js -c ./config/config.json",
-    "start": "concurrently \"npm run start-proxy\" \"ng serve\" ",
+    "start": "concurrently \"npm run start-proxy\" \"ng serve --port 4203\" ",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
